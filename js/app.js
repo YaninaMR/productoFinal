@@ -393,3 +393,140 @@ window.onload = function () {
     selectGeneration.addEventListener('change', showGeneration);
 
 };
+
+
+// --------------------*Obtener Estudiantes----------------------------------------------------------------
+var studentsData = document.getElementById('students-data');
+var sedeStudent = document.getElementById("sede");
+var gener = document.getElementById("generation");
+//studentsData.addEventListener('click', showStudentData);
+gener.addEventListener('change',showStudentData);
+console.log("en stud");
+function showStudentData(e) {
+     var names = document.getElementById('name-student');
+     var techs = document.getElementById('tech-skills');
+     var hses = document.getElementById('life-skills');
+     names.textContent = '';
+     techs.textContent = '';
+     hses.textContent = '';
+
+
+    var sedeOption = '';
+    var generOption = '';
+   if(sedeStudent.selectedIndex == 1){
+      sedeOption = sede[2];
+       if(gener.selectedIndex==1){
+         generOption = gener[1].value;
+
+
+       }else if(gener.selectedIndex==2){
+         generOption = gener[2].value;
+
+
+       }else if(gener.selectedIndex==3){
+         generOption = gener[3].value;
+
+
+       }
+
+   } else if(sedeStudent.selectedIndex == 2){
+    sedeOption = sede[0];
+        if(gener.selectedIndex==1){
+          generOption = gener[1].value;
+        }else if(gener.selectedIndex==2){
+          generOption = gener[2].value;
+        }
+
+   } else if(sedeStudent.selectedIndex == 3){
+    sedeOption = sede[3];
+          if(gener.selectedIndex==1){
+            generOption = gener[1].value;
+          }else if(gener.selectedIndex==2){
+            generOption = gener[2].value;
+          }else if(gener.selectedIndex==3){
+            generOption = gener[3].value;
+          }
+   }else if(sedeStudent.selectedIndex == 4){
+    sedeOption = sede[1];
+        if(gener.selectedIndex==2){
+          generOption = gener[2].value;
+        }else if(gener.selectedIndex==3){
+          generOption = gener[3].value;
+        }
+   }
+
+  //var textSedeSelected = document.getElementById('sedeSelect').textContent;
+ // var textGenerSelected = document.getElementById('generSelect').textContent;
+//if (textSedeSelected && textGenerSelected) { // add if
+  // e.target.setAttribute('href','#section');
+  var sa = data[sedeOption][generOption]['students'];
+  for (var j = 0;j < sa.length;j++) {
+    if (sa[j]['active'] === true) {
+      // var ss = data[textSedeSelected][textGenerSelected]["students"][j]["sprints"];
+      var ss = sa[j]['sprints'];
+      var sumSprintTotal = 0, sumSprintTotalH = 0;
+      for (var i = 0 ; i < ss.length ;i++) {
+        var scoreTech = ss[i]['score']['tech'];
+        var scoreHse = ss[i]['score']['hse'];
+        sumSprintTotal = sumSprintTotal + scoreTech;
+        sumSprintTotalH = sumSprintTotalH + scoreHse;
+      }
+      // console.log((((sumSprintTotal/4)/1800)*100).toFixed(2));
+      porcentajeTech = (((sumSprintTotal / ss.length) / 1800) * 100).toFixed(2);
+      porcentajeHse = (((sumSprintTotalH / ss.length) / 1800) * 100).toFixed(2);
+    }
+    var sectionStudents = document.getElementById('section');
+    var divStudent = document.createElement('div');
+  /*  // Student Name
+    var name = document.createElement('h2');
+    var textName = document.createTextNode(sa[j]['name']);
+    name.appendChild(textName);
+    divStudent.appendChild(name);*/
+    //student name ruthandre
+
+
+    var titlename = document.createElement('div');
+    titlename.textContent = sa[j]['name'];
+    titlename.classList.add('squaren');
+
+    if(names.nextSibling){
+        names.parentNode.insertBefore(titlename,names.nextSibling);
+    } else {
+       names.parentNode.appendChild(titlename);
+    }
+
+
+    // porcentajeTech ruthandre
+
+
+    var divtech = document.createElement('div');
+    var spantech = document.createElement('span');
+    var brtech = document.createElement('br');
+    var spannametech = document.createElement('span');
+    spannametech.textContent = 'TECH SKILLS';
+    divtech.classList.add('squaret');
+
+   // divtech.classList.add('porcentage');
+    divtech.textContent = porcentajeTech + '% ' ;
+    if(techs.nextSibling){
+        techs.parentNode.insertBefore(divtech,techs.nextSibling);
+    } else {
+        techs.parentNode.appendChild(divtech);
+    }
+
+
+   // PorcentajeHse ruthname
+
+        var titlehse = document.createElement('div');
+        titlehse.textContent = porcentajeHse + '%';
+        titlehse.classList.add('squareh');
+
+        if(hses.nextSibling){
+            hses.parentNode.insertBefore(titlehse,hses.nextSibling);
+        } else {
+            hses.parentNode.appendChild(titlehse);
+        }
+  }
+
+
+}

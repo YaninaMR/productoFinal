@@ -312,6 +312,44 @@ li {
 .block{
     display: block;
 }
+.squaren {
+  width: 200px;
+  height: 10px;
+  display: block;
+  text-align: center;
+  background: #fff;
+  color: #1b1a15;
+  padding: 10px;
+  margin: 10px;
+}
+
+.squaret {
+  width: 50px;
+  height: 10px;
+  display: block;
+  text-align: center;
+  background: #fff;
+  color: #f1ca0f;
+  padding: 10px;
+  margin: 10px;
+
+}
+.squareh {
+  width: 60px;
+  height: 10px;
+  display: block;
+  text-align: center;
+  background: #fff;
+  color: #0f9ef1;
+  padding: 10px;
+  margin: 10px;
+}
+.box{
+  width: 200px;
+  border:1px solid #999;
+  box-sizing: border-box;
+  float:left;
+}
 
 
 
