@@ -37,19 +37,66 @@ var selectGeneration = document.getElementById('generation');
 var chooseSede = ''; // va a indicar cual es la sede para tomarlas en cuenta con el siguiente filtro
 //var studentInfo = document.getElementById('students')
 
+var Students = document.getElementById('student-currently');
+var pStudentsDeserter = document.getElementById('dropout');
+var promedio70General = document.getElementById('student-target');
+var divMetas = document.getElementById('infoSkill');
+var total = document.getElementById('total');
+var divRatings = document.getElementById('student-satisfaction'); // creamos un div que contenga kos datos
+var divProfes = document.getElementById('teacher-rating');
+var divJedis = document.getElementById('jedi-master-rating');
+var divNps = document.getElementById('cumulative-nps');
+var pNpsFinal = document.getElementById('percentage');
+
+
 function select() {   
     switch (true) {
-        case event.target.value === 'lima':            
+        case event.target.value === 'lima':
+        Students.textContent = '';
+        pStudentsDeserter.textContent = '';
+        total.textContent = '';
+        divNps.textContent = '';
+        pNpsFinal.textContent = '';
+        divMetas.textContent = '';
+        divRatings.textContent = '';
+        divProfes.textContent = '';
+        divJedis.textContent = '';
             chooseSede = 2; // chooseSede cambia a 2 porque es la posicion en el array sede que tiene lima
             break;
         case event.target.value === 'arequipa':
+        Students.textContent = '';
+        pStudentsDeserter.textContent = '';
+        total.textContent = '';
+        divNps.textContent = '';
+        pNpsFinal.textContent = '';
+        divMetas.textContent = '';
+        divRatings.textContent = '';
+        divProfes.textContent = '';
+        divJedis.textContent = '';
             chooseSede = 0; // choose cambia a 0 por su posicion en el array sede
             break;
         case event.target.value === 'chile':
+        Students.textContent = '';
+        pStudentsDeserter.textContent = '';
+        total.textContent = '';
+        divNps.textContent = '';
+        pNpsFinal.textContent = '';
+        divMetas.textContent = '';
+        divRatings.textContent = '';
+        divProfes.textContent = '';
+        divJedis.textContent = '';
             chooseSede = 3; // choose cambia a 3 por su posicion en el array sede
             break;
         case event.target.value === 'mexico':
-            console.log(data[sede[1]]); // choose cambia a 1 por su posicion en el array sede
+        Students.textContent = '';
+        pStudentsDeserter.textContent = '';
+        total.textContent = '';
+        divNps.textContent = '';
+        pNpsFinal.textContent = '';
+        divMetas.textContent = '';
+        divRatings.textContent = '';
+        divProfes.textContent = '';
+        divJedis.textContent = '';
             chooseSede = 1;
             break;
     };
@@ -89,10 +136,8 @@ function showGeneration(obj) { // nos va a mostrar la cantidad de estudiantes ac
         };
     };
 
-    var Students = document.getElementById('student-currently');
     Students.textContent = 'ESTUDIANTES INSCRITAS: ' + cantEstudents + ' inscritas'; // agrega contenido al p
-
-    var pStudentsDeserter = document.getElementById('dropout');    
+    
     pStudentsDeserter.textContent = 'ESTUDIANTES DESERTORAS:' + (cantEstudents - acumulStudentsActive) + ' desertoras'; // mueustra las desertoras
     
     // var pStudentsAactive = document.createElement('p');
@@ -126,8 +171,6 @@ function showGeneration(obj) { // nos va a mostrar la cantidad de estudiantes ac
 function showMetas(obj) {
     var tech = (1800 * 70) / 100;// calcula el 70% (1800) 1260
     var hse = (1200 * 70) / 100;// clacula el 70% (1200) 840
-    var promedio70General = document.getElementById('student-target');
-    var divMetas = document.getElementById('infoSkill');
     var acumSprint1Tech = 0; // variables para guardar las alumnas que superan el 70%
     var acumSprint1Hse = 0;
     var acumSprint2Tech = 0;
@@ -182,7 +225,6 @@ function showMetas(obj) {
     var sumTech = (acumSprint1Tech + acumSprint2Tech + acumSprint3Tech + acumSprint4Tech) / sprintsCant; // promedia la cantidad de estudiantes que superan el 70% en tech
     var sumHse = (acumSprint1Hse + acumSprint2Hse + acumSprint3Hse + acumSprint4Hse) / sprintsCant; // promedia la cantidad de estudiantes que superan el 70% en hse
     var promGeneral = parseInt((sumTech + sumHse) / 2); // promedia tech y hase
-    var total = document.getElementById('total');
     promedio70General.textContent = 'PROMEDIO DE ESTUDIANTES QUE SUPERARON LA META: ' + promGeneral + ' Estudiantes';
     total.textContent = parseInt((promGeneral * 100) / cantEstudents) + ' %';
    
@@ -237,7 +279,6 @@ function showMetas(obj) {
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
-        debugger
         var data = google.visualization.arrayToDataTable([
             ['SPRINT', 'Tech', 'Hse'],
             ['1', acumSprint1Tech, acumSprint1Hse],
@@ -283,11 +324,6 @@ function showMetas(obj) {
 };
 
 function showRatings(obj) {
-    var divRatings = document.getElementById('student-satisfaction'); // creamos un div que contenga kos datos
-    var divProfes = document.getElementById('teacher-rating');
-    var divJedis = document.getElementById('jedi-master-rating');
-    var divNps = document.getElementById('cumulative-nps');
-    var pNpsFinal = document.getElementById('percentage');
     var sumNps = 0;
     for (var j = 0; j < obj['ratings'].length; j++) { // recorre el array ratings
         // console.log(obj['ratings'][j]['student']); // me da un objeto que contiene los keys de cumple o no
@@ -365,6 +401,18 @@ function showRatings(obj) {
     }
 };
 
+var clearContent = function(){
+    Students.textContent = '';
+    pStudentsDeserter.textContent = '';
+    promedio70General.textContent = '';
+    total.textContent = '';
+    divNps.textContent = '';
+    pNpsFinal.textContent = '';
+    divMetas.textContent = '';
+    divRatings.textContent = '';
+    divProfes.textContent = '';
+    divJedis.textContent = '';
+};
 
 
 
