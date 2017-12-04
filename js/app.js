@@ -52,51 +52,19 @@ var pNpsFinal = document.getElementById('percentage');
 function select() {   
     switch (true) {
         case event.target.value === 'lima':
-        Students.textContent = '';
-        pStudentsDeserter.textContent = '';
-        total.textContent = '';
-        divNps.textContent = '';
-        pNpsFinal.textContent = '';
-        divMetas.textContent = '';
-        divRatings.textContent = '';
-        divProfes.textContent = '';
-        divJedis.textContent = '';
+        clearContent();
             chooseSede = 2; // chooseSede cambia a 2 porque es la posicion en el array sede que tiene lima
             break;
         case event.target.value === 'arequipa':
-        Students.textContent = '';
-        pStudentsDeserter.textContent = '';
-        total.textContent = '';
-        divNps.textContent = '';
-        pNpsFinal.textContent = '';
-        divMetas.textContent = '';
-        divRatings.textContent = '';
-        divProfes.textContent = '';
-        divJedis.textContent = '';
+        clearContent();
             chooseSede = 0; // choose cambia a 0 por su posicion en el array sede
             break;
         case event.target.value === 'chile':
-        Students.textContent = '';
-        pStudentsDeserter.textContent = '';
-        total.textContent = '';
-        divNps.textContent = '';
-        pNpsFinal.textContent = '';
-        divMetas.textContent = '';
-        divRatings.textContent = '';
-        divProfes.textContent = '';
-        divJedis.textContent = '';
+        clearContent();
             chooseSede = 3; // choose cambia a 3 por su posicion en el array sede
             break;
         case event.target.value === 'mexico':
-        Students.textContent = '';
-        pStudentsDeserter.textContent = '';
-        total.textContent = '';
-        divNps.textContent = '';
-        pNpsFinal.textContent = '';
-        divMetas.textContent = '';
-        divRatings.textContent = '';
-        divProfes.textContent = '';
-        divJedis.textContent = '';
+        clearContent();
             chooseSede = 1;
             break;
     };
@@ -404,7 +372,6 @@ function showRatings(obj) {
 var clearContent = function(){
     Students.textContent = '';
     pStudentsDeserter.textContent = '';
-    promedio70General.textContent = '';
     total.textContent = '';
     divNps.textContent = '';
     pNpsFinal.textContent = '';
@@ -412,6 +379,7 @@ var clearContent = function(){
     divRatings.textContent = '';
     divProfes.textContent = '';
     divJedis.textContent = '';
+    promedio70General.textContent = '';
 };
 
 
